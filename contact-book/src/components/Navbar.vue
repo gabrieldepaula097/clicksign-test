@@ -1,11 +1,11 @@
 <template>
-  <nav class="z-10 w-full p-2 mt-0 mb-2 bg-transparent">
+  <nav class="z-10 w-full p-2 pb-4 mt-0 mb-2 bg-transparent">
     <div class="flex flex-wrap items-center justify-center w-full">
-      <div class="flex justify-start w-1/4 font-extrabold text-white">
+      <div class="flex justify-start mr-auto font-extrabold text-white w-148px">
         <img :src="require('@/assets/img/ic-logo.svg')" />
       </div>
       <div
-        class="flex flex-wrap items-center justify-center w-1/4 overflow-hidden"
+        class="flex flex-wrap items-center justify-center overflow-hidden w-144px"
       >
         <button
           v-if="contactBook.length > 0"
@@ -16,8 +16,9 @@
           <span class="font-medium text-salmon text-14">Criar Contato</span>
         </button>
       </div>
-      <div></div>
-      <div class="flex items-center content-center justify-end w-1/2 pt-2">
+      <div
+        class="flex items-center content-center justify-end pt-2 overflow-hidden pl-32px w-search"
+      >
         <input
           v-model="newSearchValue"
           type="search"
@@ -40,11 +41,12 @@ export default {
     }
   },
   computed: {
-    ...mapState(['contactBook', 'showModal']),
+    ...mapState(['contactBook', 'showModal', 'op']),
   },
   methods: {
-    ...mapMutations(['alterShowModal']),
+    ...mapMutations(['alterShowModal', 'alterOp']),
     createNewContact() {
+      this.alterOp(0)
       this.alterShowModal()
     },
   },

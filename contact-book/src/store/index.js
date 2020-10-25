@@ -8,6 +8,7 @@ export default new Vuex.Store({
   state: {
     contactBook: [],
     showModal: false,
+    op: null, // 0 create, 1 edit, 2 delete
   },
   mutations: {
     createContact(state, newContact) {
@@ -18,8 +19,14 @@ export default new Vuex.Store({
       state.email = contact.email
       state.phone = contact.phone
     },
+    refresh(state, newContactBook) {
+      state.contactBook = newContactBook
+    },
     alterShowModal(state) {
       state.showModal = !state.showModal
+    },
+    alterOp(state, newOp) {
+      state.op = newOp
     },
   },
   getters: {
@@ -37,6 +44,9 @@ export default new Vuex.Store({
     },
     showModal: (state) => {
       return state.showModal
+    },
+    op: (state) => {
+      return state.op
     },
   },
   plugins: [createPersistedState()],
